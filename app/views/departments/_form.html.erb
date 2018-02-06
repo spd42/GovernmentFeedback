@@ -1,0 +1,7 @@
+<%= simple_form_for @department, :html => { :multipart => true } do |f| %>
+	<%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select a Constituency") %>
+	<%= f.file_field :department_img %>
+	<%= f.input :title, label: "Politician" %>
+	<%= f.input :description %>
+	<%= f.button :submit, :class => 'btn-custom2' %>
+<% end %>

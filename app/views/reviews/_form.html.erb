@@ -1,0 +1,5 @@
+<%= simple_form_for([@department, @department.reviews.build]) do |f| %>
+	<%= f.input :comment %>
+	<%= f.button :submit, :class => "btn-custom2" %>
+<% end %>
+

@@ -1,0 +1,26 @@
+
+
+<h1 class="current-category"><%= params[:category] %></h1>
+
+<% if @departments.count == 0 %>
+
+	<h1>There are no Politicians currently in this constituency.</h1>
+
+<% else %>	
+
+	<div class="row">
+
+		<% @departments.each do |department| %>
+
+			<div class="col-md-3">
+				<a href="/departments/<%= department.id %>">
+					<%= image_tag department.department_img.url(:department_index), class: "department" %>
+					<%= department.title %>
+				</a>
+			</div>	
+
+		<% end %>
+
+	</div>
+	
+<% end %>	

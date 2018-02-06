@@ -1,0 +1,73 @@
+<div class="row">
+
+	<div class="col-md-4">
+
+		<%= image_tag @department.department_img.url(:department_show), class: "department-show" %>
+
+	</div>
+
+	<div class="col-md-8">
+
+		<div class="department-info">
+
+			<h2 class="department-title"><%= @department.title %></h2>
+			<p class="department-desc"><%= @department.description %></p>
+			<div class="col-md-4">
+
+		<div class="reviews">
+
+			<!-- Where the reviews/ratings will go -->
+			<h1>Reviews</h1>
+			<%= render @department.reviews %>
+
+			<div>
+				<%= link_to "Add Review", new_department_review_path(@department), class: "btn-custom" %>
+			</div>
+
+		</div>
+		</div>
+	</div>
+
+
+</div>
+
+
+
+<div class="links btn-group">
+
+	<%= link_to "Back", root_path, class: "btn btn-custom" %>
+
+	<% if user_signed_in? %>
+
+		<% if @department.user_id == current_user.id %>
+
+			<%= link_to "Edit", edit_department_path(@department), class: "btn btn-custom" %>
+			<%= link_to "Delete", department_path(@department), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+
+		<% end %>
+
+	<% end %>	
+
+</div>	
+
+
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
+
+
+<script>
+	$('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
+</script>
